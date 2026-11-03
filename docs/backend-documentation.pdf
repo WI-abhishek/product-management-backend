@@ -1,0 +1,236 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 4777 >>
+stream
+BT /F2 16 Tf 0.1 g 1 0 0 1 50.00 786.89 Tm (PRODUCT MANAGEMENT SYSTEM) Tj ET
+BT /F1 11 Tf 0.35 g 1 0 0 1 50.00 766.89 Tm (Backend Architecture & System Documentation) Tj ET
+0.1 G 1.2 w 50.00 754.89 m 545.28 754.89 l S
+BT /F2 11.5 Tf 0.05 g 1 0 0 1 50.00 718.89 Tm (TABLE OF CONTENTS) Tj ET
+0.75 G 0.6 w 50.00 713.89 m 545.28 713.89 l S
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 699.89 Tm (1. System Overview) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 683.89 Tm (2. Technology Stack) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 667.89 Tm (3. Database Design & Models) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 651.89 Tm (4. Authentication & Security) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 635.89 Tm (5. API Endpoints Overview) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 619.89 Tm (6. Standard Request / Response Format) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 603.89 Tm (7. Environment & Deployment Configuration) Tj ET
+BT /F2 11.5 Tf 0.05 g 1 0 0 1 50.00 565.89 Tm (1. SYSTEM OVERVIEW) Tj ET
+0.75 G 0.6 w 50.00 560.89 m 545.28 560.89 l S
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 546.89 Tm (The backend is a RESTful API service built for a Product Management ERP system. It handles user) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 533.89 Tm (authentication, product catalog management, category organization, inventory tracking, image uploads via) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 520.89 Tm (Cloudinary, and dashboard analytics aggregation. The service operates with a NeonDB \(PostgreSQL\)) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 507.89 Tm (relational database using Prisma ORM.) Tj ET
+BT /F2 11.5 Tf 0.05 g 1 0 0 1 50.00 469.89 Tm (2. TECHNOLOGY STACK) Tj ET
+0.75 G 0.6 w 50.00 464.89 m 545.28 464.89 l S
+0.35 g 0.35 G 0.5 w 52.00 453.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 450.89 Tm (Runtime: Node.js \(ES Modules, "type": "module"\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 438.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 435.89 Tm (Web Framework: Express 5) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 423.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 420.89 Tm (Database: PostgreSQL \(Neon Serverless\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 408.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 405.89 Tm (ORM: Prisma Client 5.22) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 393.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 390.89 Tm (Authentication: JWT \(jsonwebtoken\) + bcryptjs password hashing) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 378.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 375.89 Tm (Validation: Joi schema validation) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 363.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 360.89 Tm (File Storage: Multer \(memory storage\) + Cloudinary SDK) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 348.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 345.89 Tm (Security Middlewares: Helmet, Express Rate Limit, Express Sanitizer, CORS) Tj ET
+BT /F2 11.5 Tf 0.05 g 1 0 0 1 50.00 308.89 Tm (3. DATABASE DESIGN & MODELS) Tj ET
+0.75 G 0.6 w 50.00 303.89 m 545.28 303.89 l S
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 289.89 Tm (The PostgreSQL database consists of 3 relational models managed by Prisma:) Tj ET
+BT /F2 10 Tf 0.15 g 1 0 0 1 50.00 261.89 Tm (3.1 User \(Table: "users"\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 250.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 247.89 Tm (userId: UUID \(Primary Key\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 235.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 232.89 Tm (userName: String) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 220.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 217.89 Tm (email: String \(Unique\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 205.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 202.89 Tm (password: String \(Hashed with bcrypt\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 190.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 187.89 Tm (role: Role Enum \(ADMIN, STAFF; Default: ADMIN\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 175.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 172.89 Tm (refreshToken: Text \(Nullable\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 160.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 157.89 Tm (createdAt, updatedAt: Timestamps) Tj ET
+BT /F2 10 Tf 0.15 g 1 0 0 1 50.00 130.89 Tm (3.2 Category \(Table: "categories"\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 119.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 116.89 Tm (categoryId: UUID \(Primary Key\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 104.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 101.89 Tm (name: String \(Unique\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 89.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 86.89 Tm (description: Text \(Nullable\)) Tj ET
+0.8 G 0.5 w 50 47 m 545.28 47 l S
+BT /F1 8.5 Tf 0.45 g 1 0 0 1 50 35 Tm (Product Management System - Backend Documentation) Tj ET
+BT /F1 8.5 Tf 0.45 g 1 0 0 1 490.28 35 Tm (Page 1 of 3) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 6 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+8 0 obj
+<< /Length 6413 >>
+stream
+0.35 g 0.35 G 0.5 w 52.00 789.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 786.89 Tm (Relation: Has many Products \(1-to-N, delete restricted if products exist\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 774.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 771.89 Tm (createdAt, updatedAt: Timestamps) Tj ET
+BT /F2 10 Tf 0.15 g 1 0 0 1 50.00 744.89 Tm (3.3 Product \(Table: "products"\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 733.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 730.89 Tm (productId: UUID \(Primary Key\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 718.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 715.89 Tm (sku: String \(Unique, Indexed\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 703.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 700.89 Tm (name: String \(Indexed\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 688.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 685.89 Tm (description: Text \(Nullable\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 673.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 670.89 Tm (brand: String \(Nullable\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 658.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 655.89 Tm (costPrice: Decimal\(10,2\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 643.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 640.89 Tm (sellingPrice: Decimal\(10,2\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 628.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 625.89 Tm (stockQuantity: Integer \(Default: 0, Indexed\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 613.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 610.89 Tm (lowStockThreshold: Integer \(Default: 10\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 598.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 595.89 Tm (unit: String \(Default: "pcs"\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 583.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 580.89 Tm (status: ProductStatus Enum \(ACTIVE, INACTIVE, OUT_OF_STOCK, DISCONTINUED\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 568.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 565.89 Tm (imageUrl: Text \(Nullable\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 553.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 550.89 Tm (imagePublicId: Text \(Nullable, Cloudinary identifier\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 538.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 535.89 Tm (categoryId: UUID \(Foreign Key -> categories.categoryId, Indexed\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 523.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 520.89 Tm (userId: UUID \(Foreign Key -> users.userId, Cascade delete\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 508.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 505.89 Tm (createdAt, updatedAt: Timestamps) Tj ET
+BT /F2 11.5 Tf 0.05 g 1 0 0 1 50.00 468.89 Tm (4. AUTHENTICATION & SECURITY) Tj ET
+0.75 G 0.6 w 50.00 463.89 m 545.28 463.89 l S
+0.35 g 0.35 G 0.5 w 52.00 452.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 449.89 Tm (Password Hashing: Salted bcrypt hashing before storing in database.) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 437.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 434.89 Tm (Access Tokens: Short-lived JWT tokens passed via Authorization header \("Bearer <token>"\).) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 422.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 419.89 Tm (Refresh Tokens: Long-lived tokens stored in the database and sent via custom "x-refresh-token") Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 406.89 Tm (header to rotate access tokens without forcing re-login.) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 394.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 391.89 Tm (Route Protection: "isAuthorized" middleware validates token signature, expiration, and user) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 378.89 Tm (existence before executing protected controller methods.) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 366.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 363.89 Tm (Rate Limiting: 100 requests per second per IP to prevent brute-force and DoS attacks.) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 351.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 348.89 Tm (Input Sanitization & Validation: Express Sanitizer strips script injection; Joi validates data types) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 335.89 Tm (and constraints on every incoming request.) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 323.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 320.89 Tm (Image Handling: Multer handles multipart in-memory buffers; images are uploaded to Cloudinary, and) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 307.89 Tm (older images are deleted upon product update/removal.) Tj ET
+BT /F2 11.5 Tf 0.05 g 1 0 0 1 50.00 270.89 Tm (5. API ENDPOINTS OVERVIEW) Tj ET
+0.75 G 0.6 w 50.00 265.89 m 545.28 265.89 l S
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 251.89 Tm (All endpoints are RESTful and versioned under the /api/v1 prefix:) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 232.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 229.89 Tm (Authentication \(/api/v1/Auth\): User registration, credential login, token rotation \(/RefreshToken\),) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 216.89 Tm (and session logout.) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 204.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 201.89 Tm (Category Management \(/api/v1/Category\): CRUD operations for product categories including paginated) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 188.89 Tm (search/listing and dropdown options.) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 176.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 173.89 Tm (Product Catalog \(/api/v1/Product\): Complete catalog management with server-side pagination,) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 160.89 Tm (multi-field search and filters, Cloudinary image upload, inline status toggling, and deletion.) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 148.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 145.89 Tm (Dashboard Analytics \(/api/v1/Dashboard\): Aggregated inventory statistics \(/Stats\) providing summary) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 132.89 Tm (counts, top 4 categories distribution, and low-stock replenishment alerts.) Tj ET
+BT /F2 11.5 Tf 0.05 g 1 0 0 1 50.00 95.89 Tm (6. STANDARD REQUEST / RESPONSE FORMAT) Tj ET
+0.75 G 0.6 w 50.00 90.89 m 545.28 90.89 l S
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 76.89 Tm (All API responses follow a unified JSON envelope:) Tj ET
+0.8 G 0.5 w 50 47 m 545.28 47 l S
+BT /F1 8.5 Tf 0.45 g 1 0 0 1 50 35 Tm (Product Management System - Backend Documentation) Tj ET
+BT /F1 8.5 Tf 0.45 g 1 0 0 1 490.28 35 Tm (Page 2 of 3) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 8 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+10 0 obj
+<< /Length 2514 >>
+stream
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 786.89 Tm (Success Response:) Tj ET
+0.97 g 0.85 G 0.5 w 50.00 702.89 495.28 72.00 re B
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 760.89 Tm ({) Tj ET
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 748.89 Tm (  "status": 1,) Tj ET
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 736.89 Tm (  "message": "<Status description message>",) Tj ET
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 724.89 Tm (  "data": { ... }) Tj ET
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 712.89 Tm (}) Tj ET
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 680.89 Tm (Failure / Error Response:) Tj ET
+0.97 g 0.85 G 0.5 w 50.00 596.89 495.28 72.00 re B
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 654.89 Tm ({) Tj ET
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 642.89 Tm (  "status": 0,) Tj ET
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 630.89 Tm (  "message": "<Error description message>",) Tj ET
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 618.89 Tm (  "error": "<Technical error detail if available>") Tj ET
+BT /F3 8.5 Tf 0.15 g 1 0 0 1 58.00 606.89 Tm (}) Tj ET
+BT /F2 11.5 Tf 0.05 g 1 0 0 1 50.00 558.89 Tm (7. ENVIRONMENT & DEPLOYMENT CONFIGURATION) Tj ET
+0.75 G 0.6 w 50.00 553.89 m 545.28 553.89 l S
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 50.00 539.89 Tm (Required environment variables \(.env\):) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 526.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 523.89 Tm (PORT: Application port \(Default: 5000\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 511.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 508.89 Tm (DATABASE_URL: Neon PostgreSQL connection pooler string) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 496.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 493.89 Tm (DIRECT_URL: Direct Neon PostgreSQL connection string \(for migrations\)) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 481.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 478.89 Tm (JWT_SECRET: Secret key for signing access tokens) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 466.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 463.89 Tm (JWT_REFRESH_SECRET: Secret key for signing refresh tokens) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 451.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 448.89 Tm (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET: Cloudinary credentials) Tj ET
+0.35 g 0.35 G 0.5 w 52.00 436.39 2.5 2.5 re f
+BT /F1 9.5 Tf 0.15 g 1 0 0 1 64.00 433.89 Tm (ALLOWED_ORIGIN: Frontend URL for CORS configuration) Tj ET
+0.8 G 0.5 w 50 47 m 545.28 47 l S
+BT /F1 8.5 Tf 0.45 g 1 0 0 1 50 35 Tm (Product Management System - Backend Documentation) Tj ET
+BT /F1 8.5 Tf 0.45 g 1 0 0 1 490.28 35 Tm (Page 3 of 3) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 10 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000019 00000 n 
+0000000068 00000 n 
+0000000138 00000 n 
+0000000235 00000 n 
+0000000337 00000 n 
+0000000432 00000 n 
+0000005261 00000 n 
+0000005413 00000 n 
+0000011878 00000 n 
+0000012030 00000 n 
+0000014597 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+14751
+%%EOF
