@@ -8,6 +8,7 @@ import { corsConfig } from '#configs/cors.config.js';
 import authRoute from '../app/routes/auth.route.js';
 import categoryRoute from '../app/routes/category.route.js';
 import productRoute from '../app/routes/product.route.js';
+import dashboardRoute from '../app/routes/dashboard.route.js';
 
 export const expressConfig = function () {
     const app = express();
@@ -41,6 +42,7 @@ export const expressConfig = function () {
     authRoute(app, express);
     categoryRoute(app, express);
     productRoute(app, express);
+    dashboardRoute(app, express);
 
     return app;
 };
