@@ -11,6 +11,8 @@ build/
 *.local
 
 # Environment variables (Keep .env.example tracked, ignore actual secrets)
+.env
+.env.*
 !.env.example
 
 # Logs
