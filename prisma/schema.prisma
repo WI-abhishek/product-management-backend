@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  STAFF
+}
+
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+  OUT_OF_STOCK
+  DISCONTINUED
+}
+
+model User {
+  userId       String    @id @default(uuid())
+  userName     String
+  email        String    @unique
+  password     String
+  role         Role      @default(ADMIN)
+  refreshToken String?   @db.Text
+  products     Product[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@map("users")
+}
+
+model Category {
+  categoryId  String    @id @default(uuid())
+  name        String    @unique
+  description String?   @db.Text
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("categories")
+}
+
+model Product {
+  productId         String        @id @default(uuid())
+  sku               String        @unique
+  name              String
+  description       String?       @db.Text
+  brand             String?
+  costPrice         Decimal       @db.Decimal(10, 2)
+  sellingPrice      Decimal       @db.Decimal(10, 2)
+  stockQuantity     Int           @default(0)
+  lowStockThreshold Int           @default(10)
+  unit              String        @default("pcs")
+  status            ProductStatus @default(ACTIVE)
+  imageUrl          String?       @db.Text
+  imagePublicId     String?       @db.Text
+
+  categoryId        String
+  category          Category      @relation(fields: [categoryId], references: [categoryId], onDelete: Restrict)
+
+  userId            String
+  user              User          @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([name])
+  @@index([sku])
+  @@index([categoryId])
+  @@index([status])
+  @@index([stockQuantity])
+  @@map("products")
+}
+
