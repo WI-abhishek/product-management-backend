@@ -426,14 +426,32 @@ export const productList = async (req, res) => {
                         category: { name: { contains: cleanValue, mode: "insensitive" } }
                     });
                 } else if (field === "sellingPrice") {
-                    const num = Number(cleanValue);
-                    if (!isNaN(num)) andConditions.push({ sellingPrice: num });
+                    const pattern = `%${cleanValue}%`;
+                    const matchingProducts = await prisma.$queryRaw`
+                        SELECT "productId" 
+                        FROM "products" 
+                        WHERE "sellingPrice"::text LIKE ${pattern}
+                    `;
+                    const matchingIds = matchingProducts.map((p) => p.productId);
+                    andConditions.push({ productId: { in: matchingIds } });
                 } else if (field === "costPrice") {
-                    const num = Number(cleanValue);
-                    if (!isNaN(num)) andConditions.push({ costPrice: num });
+                    const pattern = `%${cleanValue}%`;
+                    const matchingProducts = await prisma.$queryRaw`
+                        SELECT "productId" 
+                        FROM "products" 
+                        WHERE "costPrice"::text LIKE ${pattern}
+                    `;
+                    const matchingIds = matchingProducts.map((p) => p.productId);
+                    andConditions.push({ productId: { in: matchingIds } });
                 } else if (field === "stockQuantity") {
-                    const num = Number(cleanValue);
-                    if (!isNaN(num)) andConditions.push({ stockQuantity: num });
+                    const pattern = `%${cleanValue}%`;
+                    const matchingProducts = await prisma.$queryRaw`
+                        SELECT "productId" 
+                        FROM "products" 
+                        WHERE "stockQuantity"::text LIKE ${pattern}
+                    `;
+                    const matchingIds = matchingProducts.map((p) => p.productId);
+                    andConditions.push({ productId: { in: matchingIds } });
                 } else if (field === "stockStatus") {
                     const upperVal = cleanValue.toUpperCase();
                     if (upperVal === "OUT_OF_STOCK") {
