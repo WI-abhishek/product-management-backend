@@ -167,7 +167,7 @@ export const updateProduct = async (req, res) => {
             try {
                 // Delete previous image from Cloudinary if exists
                 if (existingProduct.imagePublicId) {
-                    await cloudinaryConfig.uploader.destroy(existingProduct.imagePublicId).catch(() => {});
+                    await cloudinaryConfig.uploader.destroy(existingProduct.imagePublicId).catch(() => { });
                 }
 
                 // Upload new image
@@ -182,7 +182,7 @@ export const updateProduct = async (req, res) => {
         } else if (req.body.imageUrl === "" || req.body.imageUrl === null) {
             // User requested to remove the existing image
             if (existingProduct.imagePublicId) {
-                await cloudinaryConfig.uploader.destroy(existingProduct.imagePublicId).catch(() => {});
+                await cloudinaryConfig.uploader.destroy(existingProduct.imagePublicId).catch(() => { });
             }
             imageUrl = null;
             imagePublicId = null;
@@ -354,7 +354,7 @@ export const deleteProduct = async (req, res) => {
 
         // Delete image from Cloudinary if exists
         if (product.imagePublicId) {
-            await cloudinaryConfig.uploader.destroy(product.imagePublicId).catch(() => {});
+            await cloudinaryConfig.uploader.destroy(product.imagePublicId).catch(() => { });
         }
 
         await prisma.product.delete({
@@ -580,7 +580,7 @@ export const checkout = async (req, res) => {
                 continue;
             }
 
-            // 3. Check stock availability
+            // Check stock availability
             if (dbProduct.stockQuantity < item.quantity) {
                 errors.push({
                     productId: item.productId,
@@ -592,7 +592,7 @@ export const checkout = async (req, res) => {
                 continue;
             }
 
-            // 4. Verify canonical content hash (strict content integrity check)
+            // Verify canonical content hash (strict content integrity check)
             const currentHash = generateProductHash(dbProduct);
             if (currentHash !== item.cartHash) {
                 errors.push({
