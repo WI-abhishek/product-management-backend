@@ -18,5 +18,6 @@ export {
     statusProductSanitize,
     selectProductByIdSanitize,
     listProductSanitize,
+    checkoutProductSanitize,
     productValidationSchema
 } from "./product.sanitize.js";

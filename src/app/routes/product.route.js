@@ -13,6 +13,7 @@ import {
     statusProductSanitize,
     selectProductByIdSanitize,
     listProductSanitize,
+    checkoutProductSanitize,
     productValidationSchema
 } from "#sanitize";
 
@@ -82,6 +83,16 @@ const productRoute = function (app, express) {
             validationMiddleware(productValidationSchema.productListSchema, "body")
         ],
         ProductController.productList
+    );
+
+    router.post(
+        routerPath + "Checkout",
+        [
+            isAuthorized,
+            checkoutProductSanitize,
+            validationMiddleware(productValidationSchema.checkoutSchema, "body")
+        ],
+        ProductController.checkout
     );
 
     app.use(configuration.baseUrl, router);

@@ -1,6 +1,6 @@
 import { prisma, cloudinaryConfig } from "#configs";
 import response from "#configs/response.json" with { type: "json" };
-import { removeUploadedFile } from "#utils";
+import { removeUploadedFile, generateProductHash } from "#utils";
 
 // ─── 1. ADD PRODUCT (OPTIONAL SINGLE IMAGE UPLOAD VIA CLOUDINARY) ────────────
 export const createProduct = async (req, res) => {
@@ -272,7 +272,10 @@ export const getProductById = async (req, res) => {
         return res.status(200).json({
             status: 1,
             message: response["302"],
-            data: product
+            data: {
+                ...product,
+                productHash: generateProductHash(product)
+            }
         });
     } catch (error) {
         return res.status(500).json({
@@ -514,6 +517,11 @@ export const productList = async (req, res) => {
             })
         ]);
 
+        const productsWithHash = products.map((p) => ({
+            ...p,
+            productHash: generateProductHash(p)
+        }));
+
         return res.status(200).json({
             status: 1,
             message: response["303"],
@@ -522,7 +530,122 @@ export const productList = async (req, res) => {
                 totalPages: Math.ceil(totalCount / noOf),
                 currentPage: page,
                 pageSize: noOf,
-                products
+                products: productsWithHash
+            }
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: 0,
+            message: response["100"],
+            error: error.message
+        });
+    }
+};
+
+// ─── 7. CHECKOUT / VERIFY CART (OPTIMISTIC CONCURRENCY / CONTENT HASH INTEGRITY) ───
+export const checkout = async (req, res) => {
+    try {
+        const { items } = req.body;
+        const productIds = items.map((item) => item.productId);
+
+        const dbProducts = await prisma.product.findMany({
+            where: {
+                productId: { in: productIds }
+            }
+        });
+
+        const productMap = new Map(dbProducts.map((p) => [p.productId, p]));
+        const errors = [];
+        const validUpdates = [];
+
+        for (const item of items) {
+            const dbProduct = productMap.get(item.productId);
+            const clientName = item.productName;
+
+            if (!dbProduct) {
+                errors.push({
+                    productId: item.productId,
+                    productName: clientName,
+                    reason: `Product "${clientName}" no longer exists in the store.`
+                });
+                continue;
+            }
+
+            if (dbProduct.status !== "ACTIVE") {
+                errors.push({
+                    productId: item.productId,
+                    productName: clientName,
+                    reason: `Product "${clientName}" is currently ${dbProduct.status.toLowerCase()} and cannot be purchased.`
+                });
+                continue;
+            }
+
+            // 3. Check stock availability
+            if (dbProduct.stockQuantity < item.quantity) {
+                errors.push({
+                    productId: item.productId,
+                    productName: clientName,
+                    reason: dbProduct.stockQuantity === 0
+                        ? `Product "${clientName}" is out of stock.`
+                        : `Insufficient stock for "${clientName}".`
+                });
+                continue;
+            }
+
+            // 4. Verify canonical content hash (strict content integrity check)
+            const currentHash = generateProductHash(dbProduct);
+            if (currentHash !== item.cartHash) {
+                errors.push({
+                    productId: item.productId,
+                    productName: clientName,
+                    reason: `Product details for "${clientName}" have changed since you added it to your cart.`
+                });
+                continue;
+            }
+
+            validUpdates.push({
+                productId: item.productId,
+                quantity: item.quantity
+            });
+        }
+
+        // If any product is invalid or details changed, block checkout completely and list all affected products
+        if (errors.length > 0) {
+            let overallMessage = "";
+            if (errors.length === 1) {
+                overallMessage = errors[0].reason;
+            } else {
+                const affectedNames = errors.map((e) => `"${e.productName}"`).join(", ");
+                overallMessage = `Product details or stock have changed for: ${affectedNames}. Please review your cart.`;
+            }
+
+            return res.status(409).json({
+                status: 0,
+                message: overallMessage,
+                errors
+            });
+        }
+
+        // Decrement stock
+        await prisma.$transaction(
+            validUpdates.map((item) =>
+                prisma.product.update({
+                    where: { productId: item.productId },
+                    data: {
+                        stockQuantity: {
+                            decrement: item.quantity
+                        }
+                    }
+                })
+            )
+        );
+
+        return res.status(200).json({
+            status: 1,
+            message: response["310"],
+            data: {
+                totalItems: validUpdates.reduce((sum, i) => sum + i.quantity, 0),
+                checkoutTime: new Date().toISOString()
             }
         });
     } catch (error) {

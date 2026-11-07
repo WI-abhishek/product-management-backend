@@ -73,6 +73,26 @@ export const listProductSanitize = (req, res, next) => {
     next();
 };
 
+export const checkoutProductSanitize = (req, res, next) => {
+    if (Array.isArray(req.body?.items)) {
+        for (const item of req.body.items) {
+            if (undefinedAndNullCheck(item?.productId)) {
+                item.productId = decode(req.sanitize(item.productId + ""));
+            }
+            if (undefinedAndNullCheck(item?.productName)) {
+                item.productName = decode(req.sanitize(item.productName + ""));
+            }
+            if (undefinedAndNullCheck(item?.name)) {
+                item.name = decode(req.sanitize(item.name + ""));
+            }
+            if (undefinedAndNullCheck(item?.cartHash)) {
+                item.cartHash = decode(req.sanitize(item.cartHash + ""));
+            }
+        }
+    }
+    next();
+};
+
 // ─── JOI VALIDATION SCHEMAS ──────────────────────────────────────────────────
 
 export const productValidationSchema = {
@@ -191,5 +211,31 @@ export const productValidationSchema = {
             field: joi.string().trim().required(),
             type: joi.string().trim().valid("asc", "desc", "ASC", "DESC").default("asc")
         }).allow(null).optional()
+    }),
+
+    checkoutSchema: joi.object({
+        items: joi.array().items(
+            joi.object({
+                productId: joi.string().trim().required().messages({
+                    "string.empty": "Product ID is required.",
+                    "any.required": "Product ID is required."
+                }),
+                productName: joi.string().trim().allow("", null).optional(),
+                name: joi.string().trim().allow("", null).optional(),
+                quantity: joi.number().integer().min(1).required().messages({
+                    "number.base": "Quantity must be a number.",
+                    "number.min": "Quantity must be at least 1.",
+                    "any.required": "Quantity is required."
+                }),
+                cartHash: joi.string().trim().length(64).required().messages({
+                    "string.empty": "Cart hash is required.",
+                    "string.length": "Cart hash must be a valid 64-character SHA-256 hash.",
+                    "any.required": "Cart hash is required."
+                })
+            })
+        ).min(1).required().messages({
+            "array.min": "Cart must contain at least one item.",
+            "any.required": "Cart items are required."
+        })
     })
 };

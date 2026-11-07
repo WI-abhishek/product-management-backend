@@ -28,6 +28,7 @@
   "307": "Product status updated successfully.",
   "308": "Dashboard statistics fetched successfully.",
   "309": "SKU already exists. Please choose a unique SKU.",
+  "310": "Checkout completed successfully.",
 
   "400": "Category created successfully.",
   "401": "Category updated successfully.",
